@@ -1,0 +1,35 @@
+:root {
+  --block-table-border-color: black;
+  --block-table-header-bg-color: darkcyan;
+}
+
+/* block */
+.block-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  border-top: 1px solid var(--block-table-border-color);
+  border-left: 1px solid var(--block-table-border-color);
+}
+
+/* block row */
+.block-table-row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+/* block cell */
+.block-table-cell {
+  flex-grow: 1;
+  border-bottom: 1px solid var(--block-table-border-color);
+  border-right: 1px solid var(--block-table-border-color);
+}
+
+.block-table-header {
+  flex-grow: 1;
+  border-bottom: 1px solid var(--block-table-border-color);
+  border-right: 1px solid var(--block-table-border-color);
+  background-color: var(--block-table-header-bg-color);
+}

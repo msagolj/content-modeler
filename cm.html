@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CM</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+    <script type="module">
+      import { createElement, render, Component } from 'https://esm.sh/preact';
+      import {html} from 'https://esm.sh/htm/preact';
+    
+      // cell class
+      class BlockTableCell extends Component {
+        render(props) {
+          return html`
+          <div class="block-table-cell">
+           ${props.children}
+          </div>`;
+        }
+      }
+
+      // Row Class
+      class BlockTableRow extends Component {
+        render(props) {
+          return html`
+          <div class="block-table-row">
+            <${BlockTableCell}>cell 1<//>
+            <${BlockTableCell}>cell 2<//>
+          </div>`;
+        }
+      }
+
+      // block header Class
+      class BlockTableHeader extends Component {
+        render(props) {
+          return html`
+          <div class="block-table-header" contentEditable="plaintext-only">
+            ${props.name}
+          </div>`;
+        }
+      }
+
+      // Block Class
+      class BlockTable extends Component {
+        render(props) {
+          return html`
+          <div class="block-table">
+            <${BlockTableHeader} ...${props} />
+            <${BlockTableRow}/>
+            <${BlockTableRow}/>
+          </div>`;
+        }
+      }
+
+      render(html`<${BlockTable} name="Block Name"/>`, document.getElementById('section'));
+    </script>
+
+
+    <main>
+      <div id="section">
+      </div>
+    </main>
+  </body>
+</html>
