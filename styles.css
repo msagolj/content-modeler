@@ -1,9 +1,18 @@
 :root {
   --block-table-border-color: black;
   --block-table-header-bg-color: darkcyan;
+
+  --inline-editing-border-color: black;
+  --inline-editing-bg-color: grey;
+  --inline-editing-color: black;
+
+  * {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+  }
 }
 
-/* block */
+/* block table */
 .block-table {
   display: flex;
   flex-direction: column;
@@ -13,23 +22,35 @@
   border-left: 1px solid var(--block-table-border-color);
 }
 
-/* block row */
+/* block table header */
+.block-table-header {
+  flex-grow: 1;
+  border-bottom: 1px solid var(--block-table-border-color);
+  border-right: 1px solid var(--block-table-border-color);
+  background-color: var(--block-table-header-bg-color);
+  padding: 5px;
+}
+
+/* block table row */
 .block-table-row {
   display: flex;
   flex-direction: row;
   align-items: stretch;
 }
 
-/* block cell */
+/* block table cell */
 .block-table-cell {
   flex-grow: 1;
   border-bottom: 1px solid var(--block-table-border-color);
   border-right: 1px solid var(--block-table-border-color);
+  padding: 5px;
 }
 
-.block-table-header {
-  flex-grow: 1;
-  border-bottom: 1px solid var(--block-table-border-color);
-  border-right: 1px solid var(--block-table-border-color);
-  background-color: var(--block-table-header-bg-color);
+/* inline editing styling */
+[contenteditable="plaintext-only"]:focus-within {
+  background-color: var(--inline-editing-bg-color);
+  border: 1px solid var(--inline-editing-border-color);
+  color: var(--inline-editing-color);
+  border-radius: 2px;
+  outline:none;
 }

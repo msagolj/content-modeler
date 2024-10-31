@@ -10,6 +10,7 @@
     <script type="module">
       import { createElement, render, Component } from 'https://esm.sh/preact';
       import {html} from 'https://esm.sh/htm/preact';
+
     
       // cell class
       class BlockTableCell extends Component {
@@ -34,9 +35,15 @@
 
       // block header Class
       class BlockTableHeader extends Component {
+
+        onBlockNameEdited(e) {
+          console.log('block name edited: ' + e.target.innerText);
+        }
+
         render(props) {
+          console.log(props);
           return html`
-          <div class="block-table-header" contentEditable="plaintext-only">
+          <div class="block-table-header" contentEditable="plaintext-only" onInput="${this.onBlockNameEdited}">
             ${props.name}
           </div>`;
         }
@@ -44,17 +51,45 @@
 
       // Block Class
       class BlockTable extends Component {
-        render(props) {
+
+        state = {
+          "definitions": [
+            {
+              "title": "Block Name",
+              "id": "blockName",
+              "plugins": {
+                "xwalk": {
+                  "page": {
+                    "resourceType:": "core/franklin/components/block/v1/block",
+                    "template": {
+                      "name": "Block Name",
+                      "model": "blockNameModelId"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "models": [
+            {
+              "id": "blockNameModelId",
+              "fields": []
+            }
+          ],
+          "filters":[]
+        }
+        
+        render() {
           return html`
           <div class="block-table">
-            <${BlockTableHeader} ...${props} />
+            <${BlockTableHeader} name=${this.state.definitions[0].title} />
             <${BlockTableRow}/>
             <${BlockTableRow}/>
           </div>`;
         }
       }
 
-      render(html`<${BlockTable} name="Block Name"/>`, document.getElementById('section'));
+      render(html`<${BlockTable}/>`, document.getElementById('section'));
     </script>
 
 
